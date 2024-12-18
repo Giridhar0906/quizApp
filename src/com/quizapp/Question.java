@@ -59,7 +59,7 @@ public class Question {
 			System.out.println("Enter your answerkey");
 			int answerkey = sc.nextInt();
 
-			//Question input = new Question();
+			
 			quetionDataStore(question, option1, option2, option3, option4, answerkey);
 
 			System.out.print("Do you want to continue? (yes/no): ");

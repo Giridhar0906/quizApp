@@ -31,7 +31,7 @@ public class StudentDisplay {
 			if (loginStudent(username, password)) {
 				System.out.println("Login successful.");
 				// if custemor login successful then call below method
-				displayAfterLogin();
+				displayAfterLogin(username);
 			} else {
 				System.out.println("Invalid username or password.");
 			}
@@ -134,7 +134,7 @@ public class StudentDisplay {
 		}
 	}
 
-	public void displayAfterLogin() {
+	public void displayAfterLogin(String username) {
 
 		System.out.println("Select Below Option");
 		System.out.println(
@@ -144,7 +144,7 @@ public class StudentDisplay {
 		case 1:
 			// displyList();
 			QuizApp quizApp = new QuizApp();
-			quizApp.quizDisplayList();
+			quizApp.quizDisplayList(username);
 			break;
 		case 2:
 			storeResult();

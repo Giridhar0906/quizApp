@@ -13,16 +13,35 @@ import java.util.Scanner;
 
 public class QuizApp {
 	
+	Scanner sc = new Scanner(System.in);
 //StudentDisplay display = new StudentDisplay();
-	public void quizDisplayList() {
+	public void quizDisplayList(String username) {
 		List<MCQ> mcqs = getMCQsFromDatabase();
-		
-		
-		int userId = 4; // Assuming you have a user ID, change as needed
-
-		Result result = runQuiz(mcqs, userId);
+		Result result = runQuiz(mcqs, getStudentIdFromUserName(username));
 		saveResultToDatabase(result);
-		StudentDisplay.StoreAndDisplayResult();
+		//StudentDisplay.StoreAndDisplayResult();
+	}
+	
+	private int getStudentIdFromUserName(String username) {
+		String url = "jdbc:mysql://localhost:3306/quizdb";
+		String user = "root";
+		String password = "Giridhar@96";
+		int id = 0;
+		try {
+			
+			Connection connection = DriverManager.getConnection(url, user, password);
+			String query = "select id from students where username = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, username);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				id = resultSet.getInt("id");
+			}
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return id;
 	}
 
 	private static List<MCQ> getMCQsFromDatabase() {
@@ -57,8 +76,9 @@ public class QuizApp {
 		return mcqs;
 	}
 
-	public static Result storeResultOfQuiz() {
-		return null;
+	public static boolean storeResultOfQuiz(int studentId, int score) {
+		
+		return false;
 		
 	
 	}
