@@ -42,7 +42,7 @@ public class AdminDisplay {
 
 	public static void studentScoreUsindId() {
 		
-		
+		System.out.println("i am boss");
 	}
 
 	
